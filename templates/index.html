@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hidden Harmony | Curated Hindi Music Portfolio by Paimina</title>
+  <meta name="description" content="Hidden Harmony is a Django-based portfolio that blends clean code with soul-touching Hindi music. Explore curated underrated gems built with love by Paimina Shaikh.">
+  <meta name="keywords" content="Portfolio, Hindi Music, Django, Web Developer, Paimina Shaikh">
+  <meta name="author" content="Paimina Shaikh" />
+  <link rel="icon" href="{% static 'songs_image/favicon.png' %}" type="image/png" />
+
+  <!-- Font + Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/script.js' %}" defer></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- ✅ HEADER: Goes here -->
+  <!-- You can include it in the next step -->
+   <!-- Navbar -->
+<header id="navbar">
+	<div class="navbar-container">
+		<a href="#hero" class="logo">
+			<span class="logo-icon">🎧</span>
+			<span class="logo-text">Hidden Harmony</span>
+			 </a>
+
+	    <nav class="nav-links">
+        <a href="#hero">Explore</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+		<a href="https://github.com/Paiminashaikh" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+		<a href="https://linkedin.com/in/paimina-shaikh" target="_blank" class="icon-link"><i class="fab fa-linkedin"></i></a>
+		<span class="music-logo">🎵</span>
+	  </nav>
+    
+	</div>
+  </header>
+  
+
+  <!-- ✅ HERO: You already added this -->
+  <section id="hero">
+    <div class="hero-overlay">
+      <h1>Hidden Harmony 🎶</h1>
+      <p>
+        Where Hindi music meets code.<br>
+        A curated collection of soul-touching songs — built with Django, styled with ❤️.
+      </p>
+      <a href="#songs" class="cta-btn">Explore Songs</a>
+    </div>
+  </section>
+
+  <!-- ✅ SONGS SECTION: Coming soon (below hero) -->
+  <section id="songs" style="background: #0a0a0a; padding: 4rem 2rem;">
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <h2 style="color: white; font-size: 2.5rem; letter-spacing: 1px;">
+      Explore Underrated Gems
+    </h2>
+    <p style="color: #aaa; font-size: 1rem;">
+      Curated collections grouped by mood
+    </p>
+  </div>
+
+  {% for mood, songs in grouped_songs.items %}
+    <div class="mood-section">
+		<h3 class="mood-heading mood-{{ mood|lower }}">
+			{{ mood|title }}
+		  </h3>
+		  
+
+      <div class="scroll-container">
+        {% for song in songs %}
+        <article class="tile-card">
+          <div class="image-wrapper">
+            <img src="{% static 'songs_image/'|add:song.mood|add:'.jpg' %}" alt="{{ song.title }}" loading="lazy">
+          </div>
+          <div class="tile-content">
+            <h3>{{ song.title }}</h3>
+            <p>{{ song.description|default:"No description yet." }}</p>
+            <a href="{{ song.spotify_link }}" target="_blank">Listen Now</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+  <!-- ✅ ABOUT SECTION: Goes below song section -->
+   <!-- About Section -->
+<section id="about" style="
+background: #111;
+color: #f0f0f0;
+padding: 5rem 2rem;
+text-align: center;
+scroll-margin-top: 100px;
+">
+<div style="max-width: 800px; margin: 0 auto;">
+  <h2 style="
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 1px;
+  ">
+    Blending Code with Culture
+  </h2>
+
+  <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.2rem;">
+    I'm a developer who finds harmony in both syntax and sound. Hidden Harmony was born from my love for Hindi music and my passion for clean code.
+  </p>
+
+  <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.2rem;">
+    This site isn't just a portfolio — it's a curated archive of musical gems and a canvas to showcase my skills using Django, HTML, CSS, and JavaScript.
+  </p>
+
+  <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.2rem;">
+    Built with: <strong>Django</strong>, <strong>HTML5/CSS3</strong>, <strong>Vanilla JavaScript</strong> — and served with ❤️.
+  </p>
+
+  <p style="font-size: 1.1rem; line-height: 1.8;">
+    Whether you're here to explore good music or clean UI — welcome to my space on the web 🎧.
+  </p>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" style="background: #0a0a0a; padding-bottom: 0;">
+
+  <!-- Contact Section -->
+  <div style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
+      <h2 style="color: #fff; font-size: 2.2rem; margin-bottom: 1rem;">Let's Connect</h2>
+      <p style="color: #ccc; font-size: 1.1rem;">
+          I'm <strong>Paimina Shaikh</strong> — the soul behind this project.<br>
+          If Hidden Harmony resonated with you, let's start a new conversation.
+      </p>
+      <a href="mailto:paimina.shaikh@gmail.com" style="
+          display: inline-block;
+          margin-top: 2rem;
+          padding: 0.75rem 1.5rem;
+          background: #fff;
+          color: #000;
+          font-weight: 600;
+          border-radius: 30px;
+          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+      ">📧 Email Me</a>
+  </div>
+
+  <!-- Footer Now Inside Same Black Wrapper -->
+  </footer>
+
+<style>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+<footer>
+  <footer class="site-footer">
+    <div class="footer-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; padding: 3rem 2rem; background-color: #0a0a0a; color: #ccc;">
+      
+      <!-- Left Column -->
+      <div class="footer-about" style="flex: 1 1 300px; text-align: left; max-width: 500px;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">Crafted with Purpose</h2>
+        <p style="line-height: 1.6; color: #ccc;">
+          Hidden Harmony blends design, development, and a deep love for Hindi music.<br>
+          It’s more than a portfolio — it’s where emotion meets code, built with heart and Django.
+        </p>
+      </div>
+  
+      <!-- Right Column -->
+      <div class="footer-links" style="flex: 1 1 200px; text-align: right;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #fff;">Connect</h3>
+        <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end;">
+          <li><a href="https://github.com/Paiminashaikh" target="_blank" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/paimina-shaikh" target="_blank" style="color: #ccc; text-decoration: none;">LinkedIn</a></li>
+          <li><a href="mailto:paimina.shaikh@gmail.com" style="color: #ccc; text-decoration: none;">Email Me</a></li>
+        </ul>
+      </div>
+  
+    </div>
+  
+    <!-- Bottom Bar -->
+    <div class="footer-bottom" style="text-align: center; padding: 1rem 0; font-size: 0.9rem; color: #888;">
+      &copy; 2025 Hidden Harmony. All rights reserved. Design inspiration from <a href="https://html5up.net" style="color: #888;">HTML5 UP</a>.
+    </div>
+  </footer>
+  
+
+
+</body>
+</html>
